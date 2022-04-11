@@ -32,14 +32,16 @@ def pattern_search(prohledavana_sekvence, vzor):
     pozice = set()
     index = 0
     while index < len(prohledavana_sekvence) - len(vzor):
-        if prohledavana_sekvence[index:index + len(vzor)] == vzor:
+        idx = 0
+        for letter in prohledavana_sekvence[index:index + len(vzor)]:
+            if letter != vzor[idx]:
+                break
+            else:
+                idx = idx + 1
+        if idx == len(vzor):
             pozice.add(index)
         index = index + 1
     return pozice
-
-
-
-
 
 
 def main():
