@@ -16,9 +16,17 @@ def read_data(file_name, field):
     with open(file_path, mode='r') as json_file:
         data = json.load(json_file)
     if field not in set(data.keys()):
-
+        return None
     return data[field]
 
+def linear_search(prohledavana_sekvence, hledane_cislo):
+    positions = []
+    count = 0
+    for idx, prvek in enumerate(prohledavana_sekvence):
+        if prvek == hledane_cislo:
+            positions.append(idx)
+            count = count + 1
+    return {'positions': positions, 'count': count}
 
 
 
@@ -26,7 +34,8 @@ def read_data(file_name, field):
 def main():
     sequential_data = read_data('sequential.json', 'unordered_numbers')
     print(sequential_data)
-
+    results = linear_search(sequential_data, 0)
+    print(results)
 
 if __name__ == '__main__':
     main()
